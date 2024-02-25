@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        input {
+            height: 2rem;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr; /* Två kolumner */
+            gap: 20px; /* Mellanrum mellan kolumnerna */
+        }
+
+        .rem, .px {
+            display: grid; /* Aktiverar CSS Grid */
+            grid-template-columns: 1fr 5fr 1fr; /* Två kolumner, anpassas efter innehållets storlek */
+            align-items: center; /* Centrerar elementen vertikalt */
+            gap: 10px; /* Lägger till utrymme mellan h2 och input */
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+
+        h2 {
+            grid-column: 1 / span 3; /* Sträcker sig över alla tre kolumner */
+            text-align: center; /* Centrerar texten */
+        }
+    </style>
+</head>
+<body>
+    <h1>Rem To PX</h1>
+    <div class="container">
+        <div class="rem">
+            <h2>REM</h2>
+            <button onclick="decrement()">-</button>
+            <input type="number" id="rem">
+            <button onclick="increment()">+</button>
+        </div>
+        <div class="px">
+            <h2>PX</h2>
+            <button onclick="decrement()">-</button>
+            <input type="number" id="px">
+            <button onclick="increment()">+</button>
+        </div>
+    </div>
+    <script>
+        const remInput = document.getElementById('rem')
+        const pxInput = document.getElementById('px')
+
+        remInput.addEventListener('input', updatePX)
+        pxInput.addEventListener('input', updateRem)
+
+        function updatePX() {
+            pxInput.value = remInput.value * 16
+        }
+        
+        function updateRem() {
+            remInput.value = pxInput.value / 16
+        }
+    </script>
+</body>
+</html>
